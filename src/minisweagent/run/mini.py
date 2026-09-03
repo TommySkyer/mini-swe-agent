@@ -4,13 +4,13 @@
 # Read this first: https://mini-swe-agent.com/latest/usage/mini/  (usage)
 
 import os
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 import typer
 from rich.console import Console
 
-from minisweagent import global_config_dir
 from minisweagent.agents import get_agent
 from minisweagent.agents.utils.prompt_user import _multiline_prompt
 from minisweagent.config import builtin_config_dir, get_config_from_spec
@@ -20,7 +20,7 @@ from minisweagent.run.utilities.config import configure_if_first_time
 from minisweagent.utils.serialize import UNSET, recursive_merge
 
 DEFAULT_CONFIG_FILE = Path(os.getenv("MSWEA_MINI_CONFIG_PATH", builtin_config_dir / "mini.yaml"))
-DEFAULT_OUTPUT_FILE = global_config_dir / "last_mini_run.traj.json"
+DEFAULT_OUTPUT_FILE = Path.cwd() / "trajectories" / f"mini_run_{datetime.now():%Y%m%d_%H%M%S}.traj.json"
 
 
 _HELP_TEXT = """Run mini-SWE-agent in your local environment.

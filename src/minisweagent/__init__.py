@@ -21,6 +21,7 @@ from rich.console import Console
 from minisweagent.utils.log import logger
 
 package_dir = Path(__file__).resolve().parent
+root_dir = package_dir.parent.parent
 
 
 global_config_dir = Path(os.getenv("MSWEA_GLOBAL_CONFIG_DIR") or user_config_dir("mini-swe-agent"))
@@ -85,6 +86,7 @@ __all__ = [
     "Model",
     "Environment",
     "package_dir",
+    "root_dir",
     "__version__",
     "global_config_file",
     "global_config_dir",
